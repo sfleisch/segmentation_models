@@ -46,10 +46,10 @@ Table of Contents
  - `License`_
  
 
-`Difference between this fork and https://github.com/qubvel/segmentation_models`_
+`Difference between this fork and qubvel:master`
 ~~~~~~~~~~~
 
-The `CBAM <https://arxiv.org/abs/1807.06521>` attention method has been added as an option to the U-Net decoder._
+The `CBAM attention method <https://arxiv.org/abs/1807.06521>` has been added as an option to the U-Net decoder.
 
 
 Quick start
