@@ -49,8 +49,7 @@ Table of Contents
 `Difference between this fork and https://github.com/qubvel/segmentation_models`_
 ~~~~~~~~~~~
 
-`here <https://github.com/sfleisch/segmentation_models/blob/master/examples/binary%20segmentation%20(camvid).ipynb>`__.
-The `CBAM <http://arxiv.org/abs/1807.06521>` attention method has been added as an option to the U-Net decoder._
+The `CBAM <https://arxiv.org/abs/1807.06521>` attention method has been added as an option to the U-Net decoder._
 
 
 Quick start
