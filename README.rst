@@ -34,6 +34,7 @@
 
 Table of Contents
 ~~~~~~~~~~~~~~~~~
+ - `Difference between this fork and https://github.com/qubvel/segmentation_models`_
  - `Quick start`_
  - `Simple training pipeline`_
  - `Examples`_
@@ -44,6 +45,14 @@ Table of Contents
  - `Citing`_
  - `License`_
  
+
+`Difference between this fork and https://github.com/qubvel/segmentation_models`_
+~~~~~~~~~~~
+
+`here <https://github.com/sfleisch/segmentation_models/blob/master/examples/binary%20segmentation%20(camvid).ipynb>`__.
+The `CBAM <http://arxiv.org/abs/1807.06521>` attention method has been added as an option to the U-Net decoder._
+
+
 Quick start
 ~~~~~~~~~~~
 Library is build to work together with Keras and TensorFlow Keras frameworks
@@ -149,8 +158,8 @@ Same manipulations can be done with ``Linknet``, ``PSPNet`` and ``FPN``. For mor
 Examples
 ~~~~~~~~
 Models training examples:
- - [Jupyter Notebook] Binary segmentation (`cars`) on CamVid dataset `here <https://github.com/qubvel/segmentation_models/blob/master/examples/binary%20segmentation%20(camvid).ipynb>`__.
- - [Jupyter Notebook] Multi-class segmentation (`cars`, `pedestrians`) on CamVid dataset `here <https://github.com/qubvel/segmentation_models/blob/master/examples/multiclass%20segmentation%20(camvid).ipynb>`__.
+ - [Jupyter Notebook] Binary segmentation (`cars`) on CamVid dataset `here <https://github.com/sfleisch/segmentation_models/blob/master/examples/binary%20segmentation%20(camvid).ipynb>`__.
+ - [Jupyter Notebook] Multi-class segmentation (`cars`, `pedestrians`) on CamVid dataset `here <https://github.com/sfleisch/segmentation_models/blob/master/examples/multiclass%20segmentation%20(camvid).ipynb>`__.
 
 Models and Backbones
 ~~~~~~~~~~~~~~~~~~~~
@@ -173,15 +182,15 @@ PSPNet        FPN
 |psp_image|   |fpn_image|
 ============= ==============
 
-.. _Unet: https://github.com/qubvel/segmentation_models/blob/readme/LICENSE
+.. _Unet: https://github.com/sfleisch/segmentation_models/blob/readme/LICENSE
 .. _Linknet: https://arxiv.org/abs/1707.03718
 .. _PSPNet: https://arxiv.org/abs/1612.01105
 .. _FPN: http://presentations.cocodataset.org/COCO17-Stuff-FAIR.pdf
 
-.. |unet_image| image:: https://github.com/qubvel/segmentation_models/blob/master/images/unet.png
-.. |linknet_image| image:: https://github.com/qubvel/segmentation_models/blob/master/images/linknet.png
-.. |psp_image| image:: https://github.com/qubvel/segmentation_models/blob/master/images/pspnet.png
-.. |fpn_image| image:: https://github.com/qubvel/segmentation_models/blob/master/images/fpn.png
+.. |unet_image| image:: https://github.com/sfleisch/segmentation_models/blob/master/images/unet.png
+.. |linknet_image| image:: https://github.com/sfleisch/segmentation_models/blob/master/images/linknet.png
+.. |psp_image| image:: https://github.com/sfleisch/segmentation_models/blob/master/images/pspnet.png
+.. |fpn_image| image:: https://github.com/sfleisch/segmentation_models/blob/master/images/fpn.png
 
 **Backbones**
 
@@ -233,7 +242,7 @@ Installation
 
 .. code:: bash
 
-    $ pip install git+https://github.com/qubvel/segmentation_models
+    $ pip install git+https://github.com/sfleisch/segmentation_models
     
 Documentation
 ~~~~~~~~~~~~~
@@ -262,5 +271,5 @@ License
 ~~~~~~~
 Project is distributed under `MIT Licence`_.
 
-.. _CHANGELOG.md: https://github.com/qubvel/segmentation_models/blob/master/CHANGELOG.md
-.. _`MIT Licence`: https://github.com/qubvel/segmentation_models/blob/master/LICENSE
+.. _CHANGELOG.md: https://github.com/sfleisch/segmentation_models/blob/master/CHANGELOG.md
+.. _`MIT Licence`: https://github.com/sfleisch/segmentation_models/blob/master/LICENSE

@@ -1,5 +1,8 @@
 # Change Log
 
+**Version 1.0.1 sfleisch fork **
+Added CBAM attention to the decoder as an option.
+
 **Version 1.0.0**
 
 ###### Areas of improvement
