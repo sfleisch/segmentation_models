@@ -111,7 +111,7 @@ def DecoderTransposeX2Block(filters, stage, use_batchnorm=False, use_cbam=False,
 
 def CBAMBlock(filters,ratio=8, name='cbam'):
     layers=tf.keras.layers
-    image_data_format=tf.keras.backend.image_data_format()
+    image_data_format=backend.image_data_format()
     if not hasattr(CBAMBlock,'counter'): CBAMBlock.counter=0
     CBAMBlock.counter+=1
     if image_data_format=='channels_first':
@@ -157,7 +157,9 @@ def build_unet(
         activation='sigmoid',
         use_batchnorm=True,
         use_cbam=False,
-        cbam_ratio=8
+        cbam_ratio=8,
+        crop_margin=0,
+        decoder_output_dtype=tf.float32
 ):
     input_ = backbone.input
     x = backbone.output
@@ -183,6 +185,12 @@ def build_unet(
                           use_cbam=use_cbam, cbam_ratio=cbam_ratio)(x, skip)
 
     # model head (define number of output classes)
+
+    # Need to figure out get_submodules_from_kwargs and the use of wrappers to make this and
+    # CBAM more consistent with the developer's coding practices.
+    if crop_margin>0:
+        x = layers.Cropping2D(cropping=((crop_margin,crop_margin),(crop_margin,crop_margin)),
+                              data_format=backend.image_data_format())(x)
     x = layers.Conv2D(
         filters=classes,
         kernel_size=(3, 3),
@@ -191,7 +199,7 @@ def build_unet(
         kernel_initializer='glorot_uniform',
         name='final_conv',
     )(x)
-    x = layers.Activation(activation, name=activation)(x)
+    x = layers.Activation(activation, name=activation, dtype=decoder_output_dtype)(x)
 
     # create keras model instance
     model = models.Model(input_, x)
@@ -217,6 +225,8 @@ def Unet(
         decoder_use_batchnorm=True,
         decoder_use_cbam=True,
         decoder_cbam_ratio=8,
+        decoder_crop_margin=0,
+        decoder_output_dtype = tf.float32,
         **kwargs
 ):
     """ Unet_ is a fully convolution neural network for image semantic segmentation
@@ -246,6 +256,8 @@ def Unet(
             is used.
         decoder_use_cbam: if ``True``, ``CBAM`` layer after the ``Activation`` layer is used.
         decoder_cbam_ratio: if ``True``, the ``CBAM`` channel ratio is set. Ignored if decoder_use_cbam is ``False``.
+        decoder_crop_margin : overlap margin around images when using overlapping tiles, gets cropped from the output. 
+                              0 by default (not using overlapping tiles).
 
     Returns:
         ``keras.models.Model``: **Unet**
@@ -289,7 +301,9 @@ def Unet(
         n_upsample_blocks=len(decoder_filters),
         use_batchnorm=decoder_use_batchnorm,
         use_cbam=decoder_use_cbam,
-        cbam_ratio=decoder_cbam_ratio
+        cbam_ratio=decoder_cbam_ratio,
+        crop_margin=decoder_crop_margin,
+        decoder_output_dtype=decoder_output_dtype
     )
 
     # lock encoder weights for fine-tuning
